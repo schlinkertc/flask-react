@@ -7,8 +7,8 @@ export const Pitches = ({ pitches }) => {
     <List>
      {pitches.map(pitch => {
        return (
-         <List.Item key={pitch.index}>
-          <Header>{pitch.pitchType}: {pitch.avg_endSpeed}</Header>
+         <List.Item key={pitch.pitchType}>
+          <Header>{pitch.pitchType}: {pitch.avg_startSpeed}</Header>
          </List.Item>
        )
      })}

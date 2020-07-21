@@ -8,6 +8,7 @@ import numpy as np
 from .layout import html_layout
 import plotly.graph_objects as go
 from api import db
+from .. import queries
 
 def create_dashboard(server):
     """Create a Dash app"""
@@ -16,7 +17,11 @@ def create_dashboard(server):
                         #external_stylesheets=['/static/dist/css/styles.css']
                         )
     # Prepare a dataset
-    df = pd.read_sql('select * from pitches limit 10',con=db.engine)
+    df = pd.read_sql(
+        queries.pitcher_pitchType,con=db.engine).\
+        sort_values('avg_endSpeed',ascending=False).\
+        groupby('pitchType')['avg_endSpeed'].mean().\
+        reset_index()
 
     # Custom HTML layout
     dash_app.index_sting = html_layout
