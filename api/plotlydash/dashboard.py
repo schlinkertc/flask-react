@@ -19,7 +19,7 @@ def create_dashboard(server):
     df = pd.read_sql('select * from pitches limit 10',con=db.engine)
 
     # Custom HTML layout
-    #dash_app.index_sting = html_layout
+    dash_app.index_sting = html_layout
 
 
     # Create layout
