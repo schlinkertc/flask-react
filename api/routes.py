@@ -8,15 +8,10 @@ from . import queries
 @app.route('/pitches')
 def get_pitches():
     q = queries.pitcher_pitchType
-    df = pd.read_sql(
-        q,con=db.engine).\
-        sort_values('avg_endSpeed',ascending=False).\
-        groupby('pitchType')['avg_startSpeed'].mean()
     result = pd.read_sql(
-        #'select * from pitches limit 15',
         q,
         db.engine.connect()
     )
     return {
-        'pitches':df.reset_index().to_dict(orient='records')
+        'pitches':result.reset_index().to_dict(orient='records')
     }

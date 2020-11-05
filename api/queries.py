@@ -27,5 +27,8 @@ pitcher_pitchType ="""
     group by
     	m.pitcher_id, p.details_type_description
     having
-    	count(distinct(p.gamePk)) > 5;
+    	count(distinct(p.gamePk)) > 5
+    limit
+        6
+    ;
         """
