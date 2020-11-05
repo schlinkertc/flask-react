@@ -1,5 +1,5 @@
 """Core Flask app routes"""
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 from flask import current_app as app
 import pandas as pd
 from . import db
@@ -15,3 +15,8 @@ def get_pitches():
     return {
         'pitches':result.reset_index().to_dict(orient='records')
     }
+
+@app.route('/query', methods = ['POST'])
+def result():
+    q = request.json
+    return q
